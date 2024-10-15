@@ -1,0 +1,62 @@
+body {
+    font-family: sans-serif;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(94deg, #B53300, #f6925c);
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.progress-bar {
+    background-color: #eee;
+    height: 4px;
+    margin: 20px 0;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.progress-bar-fill {
+    background-color: #d9534f;
+    height: 100%;
+    width: 50%;
+    border-radius: 10px;
+}
+
+.cotizar-form {
+    max-width: 400px;
+    margin: 40px auto;
+    padding: 20px;
+    background-color: #ffffff7d;
+    border: 1px solid #ddd;
+    border-radius: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.cotizar-form label {
+    display: block;
+    margin-bottom: 10px;
+    color: #d9534f;
+}
+
+.cotizar-form input[type="text"], .cotizar-form input[type="email"], .cotizar-form input[type="tel"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+}
+
+.cotizar-form button[type="submit"] {
+    background-color: #d9534f;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.cotizar-form input[type="submit"]:hover {
+    background-color: #ff0000;
+}
