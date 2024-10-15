@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link href="https://cdn.lineicons.com/4.0/lineicons.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <title>Administrador Page</title>
+</head>
+
+<body>
+    <div class="wrapper">
+        <aside id="sidebar">
+            <div class="d-flex">
+                <button id="toogle-btn">
+                    <i class="lni lni-car-alt"></i>
+                </button>
+                <div class="sidebar-logo">
+                    <a href="#">AUTOSIGLO</a>
+                </div>
+            </div>
+            <ul class="sidebar-nav">
+                <li class="sidebar-item">
+                    <a href="#" class="sidebar-link">
+                        <i class="lni lni-user"></i>
+                        <span>Datos Perfil</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a href="clientes.html" class="sidebar-link">
+                        <i class="lni lni-users"></i>
+                        <span>Trabajadores</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a href="#" class="sidebar-link has-dropdown collapsed" data-bs-toggle="collapse"
+                        data-bs-target="#auth" aria-expanded="false" aria-controls="auth">
+                        <i class="lni lni-producthunt"></i>
+                        <span>Productos</span>
+                    </a>
+                    <ul id="auth" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
+                        <li class="sidebar-item">
+                            <a href="autos.html" class="sidebar-link">Autos</a>
+                        </li>
+                        <li class="sidebar-item">
+                            <a href="repuestos.html" class="sidebar-link">Repuestos</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="sidebar-item">
+                    <a href="#" class="sidebar-link">
+                        <i class="lni lni-cart"></i>
+                        <span>Compras</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a href="#" class="sidebar-link">
+                        <i class="lni lni-delivery"></i>
+                        <span>Ventas</span>
+                    </a>
+                </li>
+            </ul>
+            <div class="sidebar-footer">
+                <a href="index.php" class="sidebar-link">
+                    <i class="lni lni-exit"></i>
+                    <span>Salir</span>
+                </a>
+            </div>
+        </aside>
+        <div class="main">
+            <nav class="navbar navbar-expand px-3 border-bottom">
+                <button class="btn" id="sidebar-toggle" type="button">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse navbar">
+                    <ul class="navbar-nav">
+                        <li class="nav-item dropdown">
+                            <a href="#" data-bs-toggle="dropdown" class="nav-icon pe-md-0">
+                                <img src="https://img.freepik.com/iconos-gratis/nina_318-157505.jpg"
+                                    class="avatar img-fluid rounded" alt="">
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-end">
+                                <a href="#" class="dropdown-item">Profile</a>
+                                <a href="#" class="dropdown-item">Setting</a>
+                                <a href="#" class="dropdown-item">Logout</a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+
+            <div class="container-fluid">
+                <div class="mb-3">
+                    <h1>Tu Dashboard</h1>
+                </div>
+                <div class="row">
+                    <div class="col-12 col-md-6 d-flex">
+                        <div class="card flex-fill border-0 illustration">
+                            <div class="card-body p-0 d-flex flex-fill">
+                                <div class="row g-0 w-100">
+                                    <div class="col-6">
+                                        <div class="p-3 m-1">
+                                            <h4>Bienvenid@ Administrador/a</h4>
+                                            <p class="mb-0">Administrador Dashboard, Los pipoquitas</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <img src="https://th.bing.com/th/id/R.3b357db8012211f515bd136925b01365?rik=58vq7r7uQf4CtA&riu=http%3a%2f%2fwww.tuproyectodevida.pe%2fwp-content%2fuploads%2f2022%2f08%2fcaracteristicas-administrador-1200x628.jpg&ehk=Y7aSnsvsgylWe%2b6i%2foS55g%2bVARSUaVkwsGPZJzkSflc%3d&risl=&pid=ImgRaw&r=0"
+                                            class="img-fluid illustration-img" alt="">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6 d-flex">
+                        <div class="card flex-fill border-0">
+                            <div class="card-body py-4">
+                                <div class="d-flex align-items-start">
+                                    <div class="flex-grow-1">
+                                        <h4 class="mb-2">
+                                            BOB 78.000,99
+                                        </h4>
+                                        <p class="mb-2">
+                                            Total Ingresos
+                                        </p>
+                                        <div class="mb-0">
+                                            <span class="badge text-success me-2">
+                                                +9.0%
+                                            </span>
+                                            <span class="text-muted">
+                                                Que el mes anterior
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+            crossorigin="anonymous"></script>
+    </div>
+</body>
+
+</html>

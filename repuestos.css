@@ -1,0 +1,38 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
+}
+
+.wrapper {
+    display: flex;
+}
+
+#sidebar {
+    min-width: 250px;
+    background-color: #343a40;
+    color: white;
+}
+
+.sidebar-nav .sidebar-item {
+    list-style: none;
+}
+
+.sidebar-nav .sidebar-item a {
+    color: white;
+    text-decoration: none;
+    padding: 15px;
+    display: block;
+}
+
+.sidebar-nav .sidebar-item a:hover {
+    background-color: #495057;
+}
+
+.main {
+    flex-grow: 1;
+    padding: 20px;
+}
+
+.table {
+    margin-top: 20px;
+}
