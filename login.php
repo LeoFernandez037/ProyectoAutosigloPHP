@@ -1,31 +1,39 @@
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Autosiglo</title>
-    <link rel="stylesheet" href="./Css/login.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-</head>
-<body>
-    <div class="login-container">
-        <div class="login-box">
-            <a href="index.php" class="icon-link">
-                <i class="fas fa-sign-out-alt"></i>
-            </a>
-            <h1>Inicio de sesion</h1>
-            <p>Bienvenido de nuevo</p>
-            <form action="login.php" method="POST">
-                <label for="email">Correo Electrónico:</label>
-                <input type="email" name="email" placeholder="correo@example.com" required>
-                <label for="telefono">Contraseña:</label>
-                <input type="password" name="password" placeholder="1TE4567890" required>
-                <button type="submit">Acceso</button>
-            </form>
-        </div>
-        <img src="./Imagenes/auto.png" alt="Auto" class="auto_derecha">
-        <img src="./Imagenes/auto4.png" alt="Auto2" class="auto_izquierda">
-    </div>
-</body>
-</html>
 <?php
+session_start();
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+
+    try {
+        $conexion = new PDO("sqlsrv:server=DESKTOP-VJAS3QG\SQLEXPRESS;database=db_autosiglo_v2");
+        $conexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $sql = "SELECT ID_USUARIO, NICKNAME, CONTRASEÑA, ID_ROL 
+                FROM Usuario 
+                WHERE NICKNAME = :email";
+
+        $stmt = $conexion->prepare($sql);
+        $stmt->bindParam(':email', $email);
+        $stmt->execute();
+        $usuario = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if ($usuario && password_verify($password, $usuario['CONTRASEÑA'])) {
+            $_SESSION['usuario'] = $usuario['NICKNAME'];
+            $_SESSION['rol'] = $usuario['ID_ROL'];
+            if ($usuario['ID_ROL'] == 1) {
+                header('Location: pagina_administrador.php');
+            } elseif ($usuario['ID_ROL'] == 2) {
+                header('Location: pagina_usuario.php');
+            } else {
+                header('Location: pagina_inv.php');
+            }
+            exit();
+        } else {
+            echo "<h2>Correo o contraseña incorrectos</h2>";
+        }
+
+    } catch (PDOException $e) {
+        echo "Error en la conexión: " . $e->getMessage();
+    }
+}
 ?>

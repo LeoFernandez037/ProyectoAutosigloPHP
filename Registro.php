@@ -1,41 +1,58 @@
 <?php
-?>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Register Autosiglo</title>
-    <link rel="stylesheet" href="./Css/Registro.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-</head>
-<body>
-    <div class="login-container">
-        <div class="login-box">
-            <a href="index.php" class="icon-link">
-                <i class="fas fa-sign-out-alt"></i>
-            </a>
-            <h1>Registro</h1>
-            <p>Bienvenido al registro de AutoSiglo</p>
-            <p>Porfavor llene los siguientes campos</p>
-            <form action="registro.php" method="POST">
-            <label for="nombre">Nombre:</label>
-            <input type="text" id="nombre" name="nombre" placeholder="Primer Nombre" required>
-            <label for="apellido">Apellido:</label>
-            <input type="text" id="apellido" name="apellido" placeholder="Primer Apellido" required>
-            <label for="email">Correo Electrónico:</label>
-            <input type="email" id="email" name="email" placeholder="correo@example.com" required>
-            <label for="telefono">Teléfono:</label>
-            <input type="tel" id="telefono" name="telefono" placeholder="123-456-7890" required>
-            <label for="telefono">Contraseña:</label>
-            <input type="password" id="password" name="Contraseña" placeholder="1TE4567890" required>
-            <input type="password2" name="password2" placeholder="Contraseña de nuevo" required>
-                <button type="submit">Acceso</button>  
-            </form>
-        </div>
-        <img src="./Imagenes/auto.png" alt="Auto" class="auto_derecha">
-        <img src="./Imagenes/auto4.png" alt="Auto2" class="auto_izquierda">
-    </div>
-</body>
-</html>
-<?php
+session_start();
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $nombres = $_POST['nombre'];
+    $apellido_paterno = $_POST['apellido'];
+    $apellido_materno = $_POST['apellidoM'];
+    $email = $_POST['email'];
+    $fecha_nacimiento = $_POST['Fnacimiento'];
+    $telefono = $_POST['telefono'];
+    $genero = $_POST['genero'];
+    $password = $_POST['Contraseña'];
+    $password2 = $_POST['password2'];
+    if ($password !== $password2) {
+        echo "<h2>Las contraseñas no coinciden</h2>";
+        exit();
+    }
+
+    try {
+        $conexion = new PDO("sqlsrv:server=DESKTOP-VJAS3QG\SQLEXPRESS;database=db_autosiglo_v2");
+        $conexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $sql = "INSERT INTO Persona (NOMBRES, AP_PATERNO, AP_MATERNO, FECHA_NACIMIENTO, CORREO_ELECTRONICO, TELEFONO, ID_GENERO) 
+                VALUES (:nombres, :apellido_paterno, :apellido_materno, :fecha_nacimiento, :email, :telefono, :genero)";
+        
+        $stmt = $conexion->prepare($sql);
+        $stmt->bindParam(':nombres', $nombres);
+        $stmt->bindParam(':apellido_paterno', $apellido_paterno);
+        $stmt->bindParam(':apellido_materno', $apellido_materno);
+        $stmt->bindParam(':fecha_nacimiento', $fecha_nacimiento);
+        $stmt->bindParam(':email', $email);
+        $stmt->bindParam(':telefono', $telefono);
+        $stmt->bindParam(':genero', $genero);
+        
+        if ($stmt->execute()) {
+            $id_persona = $conexion->lastInsertId();
+            $sql_usuario = "INSERT INTO Usuario (ID_PERSONA, NICKNAME, CONTRASEÑA, ID_ROL) 
+                            VALUES (:id_persona, :email, :password, 2)"; // ID_ROL = 2 para usuario regular
+            
+            $stmt_usuario = $conexion->prepare($sql_usuario);
+            $hashed_password = password_hash($password, PASSWORD_BCRYPT); // Hashear la contraseña
+            $stmt_usuario->bindParam(':id_persona', $id_persona);
+            $stmt_usuario->bindParam(':email', $email);
+            $stmt_usuario->bindParam(':password', $hashed_password);
+            
+            if ($stmt_usuario->execute()) {
+                echo "<h2>Registro exitoso</h2>";
+            } else {
+                echo "<h2>Error al registrar al usuario</h2>";
+            }
+        } else {
+            echo "<h2>Error al registrar a la persona</h2>";
+        }
+
+    } catch (PDOException $e) {
+        echo "Error en la conexión: " . $e->getMessage();
+    }
+}
 ?>
