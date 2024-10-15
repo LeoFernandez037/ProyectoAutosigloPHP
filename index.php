@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/indexsy.css">
     <title>AutoSiglo</title>
 </head>
 
@@ -83,6 +83,23 @@
                 </div>
             </div>
         </div>
+        <section>
+            <h2>Tipo de Pago</h2>
+            <div class="payment-grid">
+                <div class="payment-card">
+                    <img src="./images/Alcontado.png" alt="Al Contado" class="payment-image">
+                    <div class="payment-info">
+                        <div class="payment-name">Al Contado</div>
+                    </div>
+                </div>
+                <div class="payment-card">
+                    <img src="./images/Credito.png" alt="A Crédito" class="payment-image">
+                    <div class="payment-info">
+                        <div class="payment-name">A Crédito</div>
+                    </div>
+                </div>
+            </div>
+        </section>
     </main>
     <footer>
         <div class="footer-content">
